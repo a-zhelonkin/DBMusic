@@ -94,7 +94,7 @@ public abstract class AbstractRepository<TEntity> {
         @NotNull val sql = String.format(SQL_DELETE_BY_ID_PATTERN, getTableName(), id);
 
         try (@NotNull val statement = connection.createStatement()) {
-            statement.executeQuery(sql);
+            statement.execute(sql);
         } catch (SQLException e) {
             log.error("Cannot get entity", e);
         }

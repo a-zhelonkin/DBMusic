@@ -32,7 +32,7 @@ public final class ArtistsRepository extends AbstractRepository<Artist> {
 
     @NotNull
     @Language("SQL")
-    private static final String INSERT = "INSERT INTO " + TABLE_NAME + " (genre, foundation_date, country, label) VALUES(?,?,?,?)";
+    private static final String INSERT = "INSERT INTO " + TABLE_NAME + " (name, genre, foundation_date, country, label) VALUES(?,?,?,?,?)";
 
     public ArtistsRepository(@NotNull final Connection connection) {
         super(connection);
@@ -41,8 +41,8 @@ public final class ArtistsRepository extends AbstractRepository<Artist> {
     @Override
     public void add(@NotNull final Artist artist) {
         try (@NotNull val preparedStatement = connection.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS)) {
-            preparedStatement.setString(1, artist.getGenre());
-            preparedStatement.setString(2, artist.getName());
+            preparedStatement.setString(1, artist.getName());
+            preparedStatement.setString(2, artist.getGenre());
             preparedStatement.setDate(3, artist.getFoundationDate());
             preparedStatement.setString(4, artist.getCountry());
             preparedStatement.setString(5, artist.getLabel());
@@ -63,6 +63,7 @@ public final class ArtistsRepository extends AbstractRepository<Artist> {
         try {
             @NotNull val artist = new Artist();
             artist.setId(resultSet.getInt("id"));
+            artist.setName(resultSet.getString("name"));
             artist.setGenre(resultSet.getString("genre"));
             artist.setFoundationDate(resultSet.getDate("foundation_date"));
             artist.setCountry(resultSet.getString("country"));

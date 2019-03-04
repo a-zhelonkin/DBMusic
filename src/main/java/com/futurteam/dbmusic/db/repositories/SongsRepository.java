@@ -23,6 +23,10 @@ public final class SongsRepository extends AbstractRepository<Song> {
     @Language("SQL")
     private static final String CREATE = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + "("
             + "id NUMBER NOT NULL AUTO_INCREMENT,"
+            + "album_id NUMBER NOT NULL,"
+            + "artist_id NUMBER NOT NULL,"
+            + "partner_id NUMBER NOT NULL,"
+            + "distributor_id NUMBER NOT NULL,"
             + "name VARCHAR(256) NOT NULL,"
             + "genre VARCHAR(256) NOT NULL,"
             + "release_date DATE NOT NULL,"
@@ -30,7 +34,7 @@ public final class SongsRepository extends AbstractRepository<Song> {
 
     @NotNull
     @Language("SQL")
-    private static final String INSERT = "INSERT INTO " + TABLE_NAME + " (name, genre, release_date) VALUES(?,?,?)";
+    private static final String INSERT = "INSERT INTO " + TABLE_NAME + " (album_id,artist_id,partner_id,distributor_id,name,genre,release_date) VALUES(?,?,?,?,?,?,?)";
 
     public SongsRepository(@NotNull final Connection connection) {
         super(connection);
@@ -39,9 +43,13 @@ public final class SongsRepository extends AbstractRepository<Song> {
     @Override
     public void add(@NotNull final Song song) {
         try (@NotNull val preparedStatement = connection.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS)) {
-            preparedStatement.setString(1, song.getName());
-            preparedStatement.setString(2, song.getGenre());
-            preparedStatement.setDate(3, song.getReleaseDate());
+            preparedStatement.setInt(1, song.getAlbumId());
+            preparedStatement.setInt(2, song.getArtistId());
+            preparedStatement.setInt(3, song.getPartnerId());
+            preparedStatement.setInt(4, song.getDistributorId());
+            preparedStatement.setString(5, song.getName());
+            preparedStatement.setString(6, song.getGenre());
+            preparedStatement.setDate(7, song.getReleaseDate());
             preparedStatement.executeUpdate();
 
             @NotNull val resultSet = preparedStatement.getGeneratedKeys();
@@ -59,6 +67,10 @@ public final class SongsRepository extends AbstractRepository<Song> {
         try {
             @NotNull val song = new Song();
             song.setId(resultSet.getInt("id"));
+            song.setAlbumId(resultSet.getInt("album_id"));
+            song.setArtistId(resultSet.getInt("artist_id"));
+            song.setPartnerId(resultSet.getInt("partner_id"));
+            song.setDistributorId(resultSet.getInt("distributor_id"));
             song.setName(resultSet.getString("name"));
             song.setGenre(resultSet.getString("genre"));
             song.setReleaseDate(resultSet.getDate("release_date"));

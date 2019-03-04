@@ -23,14 +23,17 @@ public final class AlbumsRepository extends AbstractRepository<Album> {
     @Language("SQL")
     private static final String CREATE = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + "("
             + "id NUMBER NOT NULL AUTO_INCREMENT,"
-            + "genre VARCHAR(20) NOT NULL,"
+            + "partner_id NUMBER NOT NULL,"
+            + "distributor_id NUMBER NOT NULL,"
+            + "name VARCHAR(256) NOT NULL,"
+            + "genre VARCHAR(256) NOT NULL,"
             + "release_date DATE NOT NULL,"
             + "songs_count NUMBER NOT NULL,"
             + "PRIMARY KEY (id))";
 
     @NotNull
     @Language("SQL")
-    private static final String INSERT = "INSERT INTO " + TABLE_NAME + " (genre, release_date, songs_count) VALUES(?,?,?)";
+    private static final String INSERT = "INSERT INTO " + TABLE_NAME + " (partner_id,distributor_id,name,genre,release_date,songs_count) VALUES(?,?,?,?,?,?)";
 
     public AlbumsRepository(@NotNull final Connection connection) {
         super(connection);
@@ -39,9 +42,12 @@ public final class AlbumsRepository extends AbstractRepository<Album> {
     @Override
     public void add(@NotNull final Album album) {
         try (@NotNull val preparedStatement = connection.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS)) {
-            preparedStatement.setString(1, album.getGenre());
-            preparedStatement.setDate(2, album.getReleaseDate());
-            preparedStatement.setInt(3, album.getSongsCount());
+            preparedStatement.setInt(1, album.getPartnerId());
+            preparedStatement.setInt(2, album.getDistributorId());
+            preparedStatement.setString(3, album.getName());
+            preparedStatement.setString(4, album.getGenre());
+            preparedStatement.setDate(5, album.getReleaseDate());
+            preparedStatement.setInt(6, album.getSongsCount());
             preparedStatement.executeUpdate();
 
             @NotNull val resultSet = preparedStatement.getGeneratedKeys();
@@ -59,10 +65,12 @@ public final class AlbumsRepository extends AbstractRepository<Album> {
         try {
             @NotNull val album = new Album();
             album.setId(resultSet.getInt("id"));
-            album.setName(resultSet.getString("genre"));
+            album.setPartnerId(resultSet.getInt("partner_id"));
+            album.setDistributorId(resultSet.getInt("distributor_id"));
+            album.setName(resultSet.getString("name"));
             album.setGenre(resultSet.getString("genre"));
-            album.setReleaseDate(resultSet.getDate("foundation_date"));
-            album.setSongsCount(resultSet.getInt("country"));
+            album.setReleaseDate(resultSet.getDate("release_date"));
+            album.setSongsCount(resultSet.getInt("songs_count"));
             return album;
         } catch (SQLException e) {
             log.error("Cannot create album", e);

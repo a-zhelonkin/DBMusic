@@ -6,11 +6,14 @@ import javafx.beans.property.SimpleStringProperty;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 
+import java.sql.Date;
+import java.util.Objects;
+
 public final class ArtistRow extends NamedEntityRow {
 
     @Getter
     @NotNull
-    private final Artist artist;
+    private final Artist entity;
 
     @NotNull
     private final SimpleStringProperty genre;
@@ -24,13 +27,13 @@ public final class ArtistRow extends NamedEntityRow {
     @NotNull
     private final SimpleStringProperty label;
 
-    public ArtistRow(@NotNull final Artist artist) {
-        super(artist);
-        this.artist = artist;
-        this.genre = new SimpleStringProperty(artist.getGenre());
-        this.foundationDate = new SimpleStringProperty(artist.getFoundationDate().toString());
-        this.country = new SimpleStringProperty(artist.getCountry());
-        this.label = new SimpleStringProperty(artist.getLabel());
+    public ArtistRow(@NotNull final Artist entity) {
+        super(entity);
+        this.entity = entity;
+        this.genre = new SimpleStringProperty(entity.getGenre());
+        this.foundationDate = new SimpleStringProperty(Objects.toString(entity.getFoundationDate()));
+        this.country = new SimpleStringProperty(entity.getCountry());
+        this.label = new SimpleStringProperty(entity.getLabel());
     }
 
     public String getGenre() {
@@ -38,6 +41,7 @@ public final class ArtistRow extends NamedEntityRow {
     }
 
     public void setGenre(final String genre) {
+        this.entity.setGenre(genre);
         this.genre.set(genre);
     }
 
@@ -46,6 +50,7 @@ public final class ArtistRow extends NamedEntityRow {
     }
 
     public void setFoundationDate(final String foundationDate) {
+        this.entity.setFoundationDate(Date.valueOf(foundationDate));
         this.foundationDate.set(foundationDate);
     }
 
@@ -54,6 +59,7 @@ public final class ArtistRow extends NamedEntityRow {
     }
 
     public void setCountry(final String country) {
+        this.entity.setCountry(country);
         this.country.set(country);
     }
 
@@ -62,6 +68,7 @@ public final class ArtistRow extends NamedEntityRow {
     }
 
     public void setLabel(final String label) {
+        this.entity.setLabel(label);
         this.label.set(label);
     }
 

@@ -13,6 +13,8 @@ public abstract class EntityRow {
         this.id = new SimpleStringProperty(String.valueOf(entity.getId()));
     }
 
+    public abstract Entity getEntity();
+
     public String getId() {
         return id.get();
     }

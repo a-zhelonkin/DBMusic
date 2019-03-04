@@ -19,7 +19,15 @@ public final class ResourcesUtils {
     @PrepareURL
     public static final URL LAYOUT_LOGIN_FXML = getInternalUrl("fxml/layout_login.fxml");
     @PrepareURL
+    public static final URL WINDOW_CREATE_DISTRIBUTOR_FXML = getInternalUrl("fxml/windows/window_create_distributor.fxml");
+    @PrepareURL
+    public static final URL WINDOW_CREATE_PARTNER_FXML = getInternalUrl("fxml/windows/window_create_partner.fxml");
+    @PrepareURL
     public static final URL WINDOW_CREATE_ARTIST_FXML = getInternalUrl("fxml/windows/window_create_artist.fxml");
+    @PrepareURL
+    public static final URL WINDOW_CREATE_ALBUM_FXML = getInternalUrl("fxml/windows/window_create_album.fxml");
+    @PrepareURL
+    public static final URL WINDOW_CREATE_SONG_FXML = getInternalUrl("fxml/windows/window_create_song.fxml");
 
     static {
         checkURL(ResourcesUtils.class);

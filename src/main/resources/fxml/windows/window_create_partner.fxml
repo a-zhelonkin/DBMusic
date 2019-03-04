@@ -9,28 +9,25 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane hgap="5.0" vgap="5.0" xmlns="http://javafx.com/javafx/8.0.171">
+<GridPane hgap="5.0" prefWidth="300.0" vgap="5.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.futurteam.dbmusic.controllers.windows.CreatePartnerController">
   <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES"/>
-    <ColumnConstraints hgrow="SOMETIMES"/>
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" />
+    <ColumnConstraints hgrow="SOMETIMES" />
   </columnConstraints>
   <rowConstraints>
-    <RowConstraints vgrow="SOMETIMES"/>
-    <RowConstraints vgrow="SOMETIMES"/>
-    <RowConstraints vgrow="SOMETIMES"/>
-    <RowConstraints vgrow="SOMETIMES"/>
+    <RowConstraints maxHeight="-Infinity" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="-Infinity" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="-Infinity" vgrow="SOMETIMES" />
   </rowConstraints>
-  <padding>
-    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
-  </padding>
-  <Label text="Label"/>
-  <Label text="Label" GridPane.rowIndex="1"/>
-  <Label text="Label" GridPane.rowIndex="2"/>
-  <TextField GridPane.columnIndex="1"/>
-  <TextField GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-  <TextField GridPane.columnIndex="1" GridPane.rowIndex="2"/>
-  <HBox alignment="CENTER_RIGHT" spacing="5.0" GridPane.columnSpan="2" GridPane.rowIndex="3">
-    <Button mnemonicParsing="false" text="Добавить"/>
-    <Button mnemonicParsing="false" text="Отмена"/>
+  <Label text="Наименование" />
+  <Label text="Стоимость размещения" GridPane.rowIndex="1" />
+  <TextField fx:id="name_TF" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" />
+  <TextField fx:id="price_TF" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+  <HBox alignment="CENTER_RIGHT" spacing="5.0" GridPane.columnSpan="2" GridPane.rowIndex="2">
+    <Button mnemonicParsing="false" onAction="#apply_B_action" text="Применить" />
+    <Button mnemonicParsing="false" onAction="#cancel_B_action" text="Отмена" />
   </HBox>
+  <padding>
+    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+  </padding>
 </GridPane>

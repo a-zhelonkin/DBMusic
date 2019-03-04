@@ -23,6 +23,7 @@ public final class PartnersRepository extends AbstractRepository<Partner> {
     @Language("SQL")
     private static final String CREATE = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + "("
             + "id NUMBER NOT NULL AUTO_INCREMENT,"
+            + "name VARCHAR(256) NOT NULL,"
             + "price DOUBLE NOT NULL,"
             + "PRIMARY KEY (id))";
 

@@ -10,15 +10,15 @@ public final class DistributorRow extends NamedEntityRow {
 
     @Getter
     @NotNull
-    private final Distributor distributor;
+    private final Distributor entity;
 
     @NotNull
     private final SimpleStringProperty founder;
 
-    public DistributorRow(@NotNull final Distributor distributor) {
-        super(distributor);
-        this.distributor = distributor;
-        this.founder = new SimpleStringProperty(distributor.getFounder());
+    public DistributorRow(@NotNull final Distributor entity) {
+        super(entity);
+        this.entity = entity;
+        this.founder = new SimpleStringProperty(entity.getFounder());
     }
 
     public String getFounder() {
@@ -26,6 +26,7 @@ public final class DistributorRow extends NamedEntityRow {
     }
 
     public void setFounder(final String founder) {
+        this.entity.setFounder(founder);
         this.founder.set(founder);
     }
 

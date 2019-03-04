@@ -42,7 +42,6 @@
         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
       </padding>
       <Button mnemonicParsing="false" onAction="#add_B_action" text="Добавить"/>
-      <Button mnemonicParsing="false" onAction="#edit_B_action" text="Редактировать"/>
       <Button mnemonicParsing="false" onAction="#remove_B_action" text="Удалить"/>
     </HBox>
   </bottom>

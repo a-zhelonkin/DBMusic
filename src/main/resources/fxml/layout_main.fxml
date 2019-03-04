@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.futurteam.dbmusic.controllers.MainController">
+  <center>
+    <TabPane fx:id="tabs_TP" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+      <Tab closable="false" text="Дистрибьюторы">
+        <fx:include source="tables/table_distributors.fxml" fx:id="distributorsTable"/>
+      </Tab>
+      <Tab closable="false" text="Партнеры">
+        <fx:include source="tables/table_partners.fxml" fx:id="partnersTable"/>
+      </Tab>
+      <Tab closable="false" text="Артисты">
+        <fx:include source="tables/table_artists.fxml" fx:id="artistsTable"/>
+      </Tab>
+      <Tab closable="false" text="Альбомы">
+        <fx:include source="tables/table_albums.fxml" fx:id="albumsTable"/>
+      </Tab>
+      <Tab closable="false" text="Песни">
+        <fx:include source="tables/table_songs.fxml" fx:id="songsTable"/>
+      </Tab>
+    </TabPane>
+  </center>
+  <top>
+    <MenuBar BorderPane.alignment="CENTER">
+      <Menu mnemonicParsing="false" text="File">
+        <MenuItem mnemonicParsing="false" text="Close"/>
+      </Menu>
+      <Menu mnemonicParsing="false" text="Edit">
+        <MenuItem mnemonicParsing="false" text="Delete"/>
+      </Menu>
+      <Menu mnemonicParsing="false" text="Help">
+        <MenuItem mnemonicParsing="false" text="About"/>
+      </Menu>
+    </MenuBar>
+  </top>
+  <bottom>
+    <HBox spacing="5.0" BorderPane.alignment="CENTER">
+      <padding>
+        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+      </padding>
+      <Button mnemonicParsing="false" onAction="#add_B_action" text="Добавить"/>
+      <Button mnemonicParsing="false" onAction="#edit_B_action" text="Редактировать"/>
+      <Button mnemonicParsing="false" onAction="#remove_B_action" text="Удалить"/>
+    </HBox>
+  </bottom>
+</BorderPane>

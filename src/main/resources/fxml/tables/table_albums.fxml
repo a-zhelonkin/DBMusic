@@ -1,0 +1,44 @@
+<?import javafx.scene.control.cell.*?>
+<?import javafx.scene.control.*?>
+<TableView xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:id="table" fx:controller="com.futurteam.dbmusic.controllers.tables.AlbumsTableController">
+  <columnResizePolicy>
+    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+  </columnResizePolicy>
+  <columns>
+    <TableColumn editable="false" minWidth="-1.0" prefWidth="75.0" text="id">
+      <cellValueFactory>
+        <PropertyValueFactory property="id"/>
+      </cellValueFactory>
+    </TableColumn>
+    <TableColumn editable="false" minWidth="-1.0" prefWidth="75.0" text="Наименование">
+      <cellValueFactory>
+        <PropertyValueFactory property="name"/>
+      </cellValueFactory>
+    </TableColumn>
+    <TableColumn editable="false" minWidth="-1.0" prefWidth="75.0" text="Жанр">
+      <cellValueFactory>
+        <PropertyValueFactory property="genre"/>
+      </cellValueFactory>
+    </TableColumn>
+    <TableColumn editable="false" minWidth="-1.0" prefWidth="75.0" text="Дата релиза">
+      <cellValueFactory>
+        <PropertyValueFactory property="releaseDate"/>
+      </cellValueFactory>
+    </TableColumn>
+    <TableColumn editable="false" minWidth="-1.0" prefWidth="75.0" text="Количество песен">
+      <cellValueFactory>
+        <PropertyValueFactory property="songsCount"/>
+      </cellValueFactory>
+    </TableColumn>
+    <TableColumn editable="false" minWidth="-1.0" prefWidth="75.0" text="id партнера">
+      <cellValueFactory>
+        <PropertyValueFactory property="partnerId"/>
+      </cellValueFactory>
+    </TableColumn>
+    <TableColumn editable="false" minWidth="-1.0" prefWidth="75.0" text="id дистрибьютора">
+      <cellValueFactory>
+        <PropertyValueFactory property="distributorId"/>
+      </cellValueFactory>
+    </TableColumn>
+  </columns>
+</TableView>
